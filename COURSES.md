@@ -9,6 +9,10 @@ This document provides an index of the 4 main courses in the Claude Certified Ar
 3. [Introduction to Model Context Protocol](introduction-to-model-context-protocol.md)
 4. [Claude Code in Action](claude-code-in-action.md)
 
+### Introduction to Agent Skills
+
+![Skills](assets/SKILLS.svg)
+
 ---
 
 ## Course References

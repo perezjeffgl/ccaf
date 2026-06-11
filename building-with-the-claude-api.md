@@ -18,3 +18,26 @@ A comprehensive course covering the full spectrum of working with Anthropic mode
 ---
 
 [← Back to Courses Overview](COURSES.md)
+
+===================introduction-to-model-context-protocol
+* mcp
+  * advantage: save time on implementation(schema+functions) 
+  * transport agnostic: standart IO
+
+===================claude-with-the-anthropic-api
+* models
+  * sonnet
+  * haiku
+  * opus
+* temperature [0...1]
+  * how likely each token is to be selected
+  * low
+    * more deterministic(select the highest probability)
+  * high
+    * more random output(distribute probability more evenly)
+    * varied and creative
+* response time (output + input) size
+  * streaming = send initial quick response
+  * chunk of responses
+* structured data
+  * 
