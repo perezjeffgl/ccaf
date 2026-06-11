@@ -1,7 +1,7 @@
 ---
 name: markmap
-description: Author and refine Markmap mind maps in Markdown. Use for structure, frontmatter options, and rendering-friendly edits in .mm.md files.
-when_to_use: Use this only when the task is about files matching *.mm.md, or when the user explicitly asks for Markmap syntax/options.
+description: Generate an SVG file from a .mm.md Markmap file. Runs the markmap CLI to render the mind map and writes a same-named .svg alongside the source file.
+when_to_use: Use when the user asks to generate, export, or render an SVG from a *.mm.md file, or passes a markmap file name as an argument.
 argument-hint: [file.mm.md]
 paths:
   - "**/*.mm.md"
@@ -9,79 +9,55 @@ paths:
 
 # Markmap Skill
 
-Create or edit mind-map Markdown for Markmap with predictable structure and valid options.
+Convert a `.mm.md` Markmap file into an SVG by running the markmap CLI.
 
-## Scope
+## Primary task — generate SVG
 
-- Apply this skill only to `*.mm.md` files.
-- Keep output as valid Markdown that Markmap can parse into a hierarchy.
+Given a file path (e.g. `introduction-to-agent-skills.mm.md`), run:
 
-## Markmap authoring rules
+```bash
+npx markmap-cli --no-open --output <basename>.svg <file.mm.md>
+```
 
-1. Use headings and/or nested bullet lists to express hierarchy.
-2. Keep heading levels monotonic where possible (avoid skipping levels unless intentional).
+- Derive `<basename>` from the input filename (strip `.mm.md`, append `.svg`).
+- Write the SVG to the same directory as the source file.
+- If `markmap-cli` is already installed globally, prefer `markmap` over `npx markmap-cli`.
+- Check availability with `which markmap || npx markmap-cli --version` before running.
+
+### Example
+
+Input: `introduction-to-agent-skills.mm.md`
+Command: `npx markmap-cli --no-open --output introduction-to-agent-skills.svg introduction-to-agent-skills.mm.md`
+Output: `introduction-to-agent-skills.svg` (same directory)
+
+## Authoring / editing .mm.md files
+
+If the source file needs fixes before rendering, apply these rules:
+
+1. Use headings and/or nested bullet lists for hierarchy.
+2. Keep heading levels monotonic (avoid skipping levels).
 3. Keep each node concise; split long nodes into children.
-4. Preserve links and inline emphasis (`**bold**`, `_italic_`, `` `code` ``) when useful for node labels.
+4. Preserve links and inline emphasis (`**bold**`, `_italic_`, `` `code` ``).
+5. If YAML frontmatter is malformed, fix it while preserving intent.
 
-## Frontmatter and options
-
-If options are needed, place them in YAML frontmatter under `markmap:`:
+### Frontmatter reference
 
 ```yaml
 ---
+title: <Title>
 markmap:
-  color:
-    - blue
+  initialExpandLevel: 2
+  maxWidth: 0
   colorFreezeLevel: 2
   duration: 500
-  maxWidth: 0
-  initialExpandLevel: -1
-  zoom: true
-  pan: true
   spacingHorizontal: 80
   spacingVertical: 5
   lineWidth: 2
+  zoom: true
+  pan: true
 ---
 ```
 
-Supported option knowledge to apply when requested:
+## After generating
 
-- `color`: string or list of colors.
-- `colorFreezeLevel`: freeze branch colors below a level.
-- `duration`: fold/unfold animation duration.
-- `maxWidth`: max node content width (`0` means no limit).
-- `initialExpandLevel`: default expanded depth (`-1` means all).
-- `zoom` / `pan`: interaction toggles.
-- `spacingHorizontal` / `spacingVertical`: layout spacing.
-- `lineWidth`: branch stroke width.
-- `htmlParser.selector`: customize HTML parsing target selector.
-- `activeNode.placement`: `visible` or `center` (supported in markmap.js.org and Markmap VSCode extension).
-- External plugin assets can be referenced through `markmap` options (e.g., JS/CSS URLs and `npm:` URL form).
-
-## Output pattern
-
-When creating a new file, use this template:
-
-```markdown
----
-title: <Mindmap Title>
-markmap:
-  initialExpandLevel: 2
----
-
-# <Mindmap Title>
-
-## Branch A
-- Item A1
-- Item A2
-
-## Branch B
-### Sub-branch B1
-- Item B1.1
-```
-
-## Editing behavior
-
-- Prefer surgical edits over rewrites.
-- Keep existing node ordering unless the user asks to reorganize.
-- If frontmatter is malformed, fix it while preserving intent.
+Report the output path and file size. If the command fails, show the error and suggest running `npm install -g markmap-cli` to install the CLI.
