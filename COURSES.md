@@ -11,7 +11,7 @@ This document provides an index of the 4 main courses in the Claude Certified Ar
 
 ### Introduction to Agent Skills
 
-![Skills](assets/SKILLS.svg)
+![Skills](assets/skills.png)
 
 ---
 
