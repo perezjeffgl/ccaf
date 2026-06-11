@@ -10,7 +10,6 @@ Study sandbox for the **Claude Certified Architect – Foundations** (CCAF) cert
 
 | File | Contents |
 |------|----------|
-| `COURSES.md` | Top-level index linking all four course notes |
 | `introduction-to-agent-skills.md` | Agent Skills: reusable markdown instructions, creating/configuring/distributing skills in Claude Code |
 | `building-with-the-claude-api.md` | Claude API: authentication, prompt engineering, vision, tool use, batch processing, streaming, error handling, production scaling |
 | `introduction-to-model-context-protocol.md` | MCP: architecture, core primitives (tools/resources/prompts), building servers and clients in Python, integration patterns |
