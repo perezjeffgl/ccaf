@@ -1,6 +1,6 @@
 ---
 name: markmap
-description: Generate an SVG file from a .mm.md Markmap file. Runs the markmap CLI to render the mind map and writes a same-named .svg alongside the source file.
+description: Generate an interactive HTML mind map from a .mm.md Markmap file. Runs the markmap CLI, captures errors, validates output, and writes a same-named .html into the assets/ directory.
 when_to_use: Use when the user asks to generate, export, or render an SVG from a *.mm.md file, or passes a markmap file name as an argument.
 argument-hint: "file.mm.md"
 paths:
@@ -13,22 +13,42 @@ Convert a `.mm.md` Markmap file into an SVG by running the markmap CLI.
 
 ## Primary task — generate SVG
 
+**Note:** `markmap-cli` always produces an interactive HTML file — there is no SVG export option. Output extension must be `.html`.
+
 Given a file path (e.g. `introduction-to-agent-skills.mm.md`), run:
 
 ```bash
-npx markmap-cli --no-open --output <basename>.svg <file.mm.md>
+mkdir -p assets
+npx markmap-cli --no-open --output assets/<basename>.html <file.mm.md> 2>&1
 ```
 
-- Derive `<basename>` from the input filename (strip `.mm.md`, append `.svg`).
-- Write the SVG to the same directory as the source file.
+- Derive `<basename>` from the input filename (strip `.mm.md`, append `.html`).
+- Always write to `assets/` relative to the project root; create it if missing.
+- Capture both stdout and stderr (`2>&1`) so errors are visible.
 - If `markmap-cli` is already installed globally, prefer `markmap` over `npx markmap-cli`.
-- Check availability with `which markmap || npx markmap-cli --version` before running.
+
+### Validate output
+
+After generation, verify the file is valid:
+
+```bash
+head -1 assets/<basename>.html
+```
+
+- Valid output starts with `<!doctype html>` or `<html`.
+- If it starts with anything else (error text, empty), the generation failed — show the captured output and stop.
+- Also check file size is non-zero: `[ -s assets/<basename>.html ]`.
 
 ### Example
 
 Input: `introduction-to-agent-skills.mm.md`
-Command: `npx markmap-cli --no-open --output introduction-to-agent-skills.svg introduction-to-agent-skills.mm.md`
-Output: `introduction-to-agent-skills.svg` (same directory)
+Commands:
+```bash
+mkdir -p assets
+npx markmap-cli --no-open --output assets/introduction-to-agent-skills.html introduction-to-agent-skills.mm.md 2>&1
+head -1 assets/introduction-to-agent-skills.html
+```
+Expected first line: `<!doctype html>`
 
 ## Authoring / editing .mm.md files
 
@@ -60,4 +80,4 @@ markmap:
 
 ## After generating
 
-Report the output path and file size. If the command fails, show the error and suggest running `npm install -g markmap-cli` to install the CLI.
+Report the output path and file size (`ls -lh assets/<basename>.html`). If the command fails or validation fails, show the full captured error output and suggest running `npm install -g markmap-cli` if the CLI is missing.
