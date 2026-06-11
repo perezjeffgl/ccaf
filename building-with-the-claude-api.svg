@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>((r) => {
+          setTimeout(r);
+        })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"API","children":[{"content":"Authentication","children":[],"payload":{"tag":"h2","lines":"10,11"}},{"content":"Setup","children":[],"payload":{"tag":"h2","lines":"12,13"}},{"content":"API calls","children":[],"payload":{"tag":"h2","lines":"14,15"}},{"content":"Models","children":[{"content":"sonnet","children":[],"payload":{"tag":"li","lines":"18,19"}},{"content":"haiku","children":[],"payload":{"tag":"li","lines":"19,20"}},{"content":"opus","children":[],"payload":{"tag":"li","lines":"20,21"}}],"payload":{"tag":"h2","lines":"16,17"}},{"content":"Prompt Engineering","children":[{"content":"temperature [0...1]","children":[{"content":"how likely each token is to be selected","children":[],"payload":{"tag":"li","lines":"24,25"}},{"content":"low","children":[{"content":"more deterministic(select the highest probability)","children":[],"payload":{"tag":"li","lines":"26,27"}}],"payload":{"tag":"li","lines":"25,27"}},{"content":"high","children":[{"content":"more random output(distribute probability more evenly)","children":[],"payload":{"tag":"li","lines":"28,29"}},{"content":"varied and creative","children":[],"payload":{"tag":"li","lines":"29,30"}}],"payload":{"tag":"li","lines":"27,30"}}],"payload":{"tag":"li","lines":"23,30"}},{"content":"response time (output + input) size","children":[{"content":"streaming = send initial quick response","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"chunk of responses","children":[],"payload":{"tag":"li","lines":"32,33"}}],"payload":{"tag":"li","lines":"30,33"}},{"content":"structured data","children":[],"payload":{"tag":"li","lines":"33,34"}}],"payload":{"tag":"h2","lines":"21,22"}},{"content":"Tools","children":[],"payload":{"tag":"h2","lines":"34,35"}},{"content":"Batch Processing","children":[],"payload":{"tag":"h2","lines":"36,37"}},{"content":"Streaming","children":[],"payload":{"tag":"h2","lines":"38,39"}},{"content":"Error Handling","children":[{"content":"Rate Limiting","children":[],"payload":{"tag":"li","lines":"42,43"}},{"content":"Retries","children":[],"payload":{"tag":"li","lines":"43,45"}}],"payload":{"tag":"h2","lines":"40,41"}},{"content":"Building","children":[],"payload":{"tag":"h2","lines":"45,46"}}],"payload":{"tag":"h1","lines":"4,5"}},null)</script>
+</body>
+</html>

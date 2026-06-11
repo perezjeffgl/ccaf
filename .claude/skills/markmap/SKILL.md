@@ -2,7 +2,7 @@
 name: markmap
 description: Generate an SVG file from a .mm.md Markmap file. Runs the markmap CLI to render the mind map and writes a same-named .svg alongside the source file.
 when_to_use: Use when the user asks to generate, export, or render an SVG from a *.mm.md file, or passes a markmap file name as an argument.
-argument-hint: [file.mm.md]
+argument-hint: "file.mm.md"
 paths:
   - "**/*.mm.md"
 ---

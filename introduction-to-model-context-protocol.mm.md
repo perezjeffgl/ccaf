@@ -15,6 +15,9 @@ Learn to build Model Context Protocol servers and clients from scratch using Pyt
 
 - **Anthropic Learning Path**: https://anthropic.skilljar.com/introduction-to-model-context-protocol
 
----
+* mcp
+  * advantage: save time on implementation(schema+functions) 
+  * transport agnostic: standart IO
+
 
 [← Back to Courses Overview](COURSES.md)

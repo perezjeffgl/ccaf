@@ -1,7 +1,7 @@
 ---
-title: s
+title: skills
 markmap:
-  maxWidht: 20
+  maxWidth: 20
 ---
 
 # Agent Skills
@@ -31,7 +31,7 @@ Building basic Skills from scratch with proper syntax and structure
 - model
   - sonnet
   - opus
-  - hiaku
+  - haiku
 - allowed-tools = restricts what Claude can use
   - Read
   - Grep
