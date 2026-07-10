@@ -15,7 +15,23 @@ All course and topic mind maps now live under `mindmaps/` as `*.mm.md` files.
 
 ### Introduction to Agent Skills
 
-![Skills](assets/skills.png)
+![Introduction to Agent Skills](assets/introduction-to-agent-skills.png)
+
+### Building with the Claude API
+
+![Building with the Claude API](assets/building-with-the-claude-api.png)
+
+### Introduction to Model Context Protocol
+
+![Introduction to Model Context Protocol](assets/introduction-to-model-context-protocol.png)
+
+### Claude Code in Action
+
+![Claude Code in Action](assets/claude-code-in-action.png)
+
+### Introduction to Sub-agents
+
+![Introduction to Sub-agents](assets/introduction-to-sub-agents.png)
 
 ---
 
