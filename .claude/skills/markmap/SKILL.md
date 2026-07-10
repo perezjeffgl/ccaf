@@ -1,7 +1,7 @@
 ---
 name: markmap
-description: Generate an interactive HTML mind map from a .mm.md Markmap file. Runs the markmap CLI, captures errors, validates output, and writes a same-named .html into the assets/ directory.
-when_to_use: Use when the user asks to generate, export, or render an SVG from a *.mm.md file, or passes a markmap file name as an argument.
+description: Generate an interactive HTML mind map from a .mm.md Markmap file. Runs the markmap CLI, validates output, and writes a same-named .html into the assets/ directory.
+when_to_use: Use when the user asks to generate, render, or export a mind map from a *.mm.md file, or passes a markmap filename as an argument.
 argument-hint: "file.mm.md"
 paths:
   - "**/*.mm.md"
@@ -9,56 +9,62 @@ paths:
 
 # Markmap Skill
 
-Convert a `.mm.md` Markmap file into an SVG by running the markmap CLI.
+Convert a `.mm.md` Markmap file into an interactive HTML mind map using the markmap CLI.
 
-## Primary task — generate SVG
+> ref: https://markmap.js.org/
 
-**Note:** `markmap-cli` always produces an interactive HTML file — there is no SVG export option. Output extension must be `.html`.
+## How to invoke
 
-Given a file path (e.g. `introduction-to-agent-skills.mm.md`), run:
+```
+/markmap <file.mm.md>
+```
+
+Example: `/markmap introduction-to-agent-skills.mm.md`
+
+The skill derives the output name from the input (strips `.mm.md`, appends `.html`) and saves it to `assets/`.
+
+---
+
+## Generation
 
 ```bash
 mkdir -p assets
 npx markmap-cli --no-open --output assets/<basename>.html <file.mm.md> 2>&1
 ```
 
-- Derive `<basename>` from the input filename (strip `.mm.md`, append `.html`).
-- Always write to `assets/` relative to the project root; create it if missing.
-- Capture both stdout and stderr (`2>&1`) so errors are visible.
-- If `markmap-cli` is already installed globally, prefer `markmap` over `npx markmap-cli`.
+- `markmap-cli` only produces HTML — there is no SVG export option.
+- If `markmap` is available globally (`which markmap`), use it instead of `npx markmap-cli`.
 
 ### Validate output
 
-After generation, verify the file is valid:
-
 ```bash
 head -1 assets/<basename>.html
+ls -lh assets/<basename>.html
 ```
 
-- Valid output starts with `<!doctype html>` or `<html`.
-- If it starts with anything else (error text, empty), the generation failed — show the captured output and stop.
-- Also check file size is non-zero: `[ -s assets/<basename>.html ]`.
+- Valid output: first line is `<!doctype html>` and file size is non-zero.
+- If the file is empty or starts with anything else, the generation failed — show the captured output and stop.
 
-### Example
+### Full example
 
-Input: `introduction-to-agent-skills.mm.md`
-Commands:
 ```bash
 mkdir -p assets
 npx markmap-cli --no-open --output assets/introduction-to-agent-skills.html introduction-to-agent-skills.mm.md 2>&1
-head -1 assets/introduction-to-agent-skills.html
+head -1 assets/introduction-to-agent-skills.html   # expect: <!doctype html>
+ls -lh assets/introduction-to-agent-skills.html
 ```
-Expected first line: `<!doctype html>`
+
+---
 
 ## Authoring / editing .mm.md files
 
-If the source file needs fixes before rendering, apply these rules:
+If the source file needs fixes before rendering:
 
 1. Use headings and/or nested bullet lists for hierarchy.
 2. Keep heading levels monotonic (avoid skipping levels).
 3. Keep each node concise; split long nodes into children.
 4. Preserve links and inline emphasis (`**bold**`, `_italic_`, `` `code` ``).
-5. If YAML frontmatter is malformed, fix it while preserving intent.
+5. Fix malformed YAML frontmatter while preserving intent.
 
 ### Frontmatter reference
 
@@ -78,6 +84,8 @@ markmap:
 ---
 ```
 
+---
+
 ## After generating
 
-Report the output path and file size (`ls -lh assets/<basename>.html`). If the command fails or validation fails, show the full captured error output and suggest running `npm install -g markmap-cli` if the CLI is missing.
+Report the output path and size. On failure, show the full captured error and suggest `npm install -g markmap-cli` if the CLI is missing.
