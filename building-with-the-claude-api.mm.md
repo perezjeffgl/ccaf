@@ -20,11 +20,7 @@ Understanding different Claude models and their use cases
     - fastest and most cost-effective
     - best for simple tasks and high-volume applications
 
-## Authentication
-
-## Setup
-
-## API calls
+## Authentication,Setup,API calls
 
 ## Prompt Engineering
 Crafting effective prompts and context management
@@ -54,6 +50,7 @@ Allowing models to interact with external APIs and databases for enhanced capabi
   - Add details about tools and their integration with the Claude API
   - tools: [ref_to_schema]
   - multi turn interactions with tools
+    - stop_reason: tool_use
 * functions
   - calls to perform tasks
   - calls to retrieve information
@@ -71,38 +68,199 @@ Allowing models to interact with external APIs and databases for enhanced capabi
   - tool_use_id
   - content
   - is_error
-* Fine grained tool calling
-  - fine_grained=True
-  - specify which tool to call and when
-  - control flow based on tool results
-  - dynamic tool selection based on context
-  - disable JSON validation for more flexible tool interactions
-
-
-
-
-
-
-
-## Batch Processing
+* build-in tools
+  * buildin
+  * only write schema
+  * tools
+    - TextEditor
+    - WebSearch
+      - search web for
+      - max_uses:, allowed_domains:
+      - citations
 
 ## Streaming
 Real-time response handling and optimization techniques
 
 * Event types
-  * InputJsonEvent key properties
+  - InputJsonEvent key properties
     - partial_json
     - snapshot
+* FGTC: Fine grained tool calling
+  - fine_grained=True
+  - send groups of chunks
+  - disable JSON validation
 * Chunks
-  * type == input_json
- 
+  - type == input_json
+  - chunk: {abstract, meta, content}
+    - abstract: high-level description of the tool call
+    - meta: metadata about the tool call (e.g., tool name, parameters)
+    - content: detailed information or results from the tool call
 
-## Error Handling
+## RAG
+Retrieval-Augmented Generation (RAG) techniques for enhanced responses and Agentic search for information retrieval and decision-making
+- problem
+  - large documents
+  - options
+    - send all document to prompt(hard limit)
+    - break into chunks and send relevant chunks
+      - different methods to select relevant chunks
+        - embedding similarity search
+        - keyword matching
+        - vector databases
+- RAG
+  - retrieve relevant information from external sources
+  - chunkin strategies
+    - size-based
+      * include overlap between chunks to maintain context
+    - semantic-based
+      * divide by headers or sections
+    - structure-based
+      * divide by groups of related information
+      * requires understanding of document structure
+    - sentence-based
+      * divide by sentences or paragraphs
+      * may require more complex processing to maintain coherence
+      * include optimal overlap to maintain context
+- Text Embeddings
+  - convert text into vector/numerical representations
+  - number = score
+  - used for similarity search in RAG
+  - embedding models available through the Claude API
+    - text-embedding-3-small
+    - text-embedding-3-large
+  - normalization of embeddings
+    - ensure consistent scale and distribution of embedding vectors
+    - improve performance of similarity search
+  - numbers  [-1..1] stored in vector databases
+    * vectorDB.add(embedding, chunk)
+    * calculate cosine similarity between query embedding and stored embeddings to find relevant information
+    * calculate cosine distance between vectors to determine relevance
+  - search systems
+    * lexical search(classic keyword-based)
+      - keyword matching
+      - simple and fast
+      - may miss relevant information due to synonyms or variations in language
+      - BM25Index 
+        - considers term frequency
+        - considers inverse document frequency
+        - can be used in combination with embedding similarity
+    * semantic search(embedding similarity)
+      - embedding similarity search
+      - more sophisticated and can capture meaning and context
+      - may be slower
+      - require more computational resources
+      - VectorIndex
+         - efficient data structure for storing and searching embeddings
+  - retriever
+    * merge results
+    * RRF (Reciprocal Rank Fusion)
+      - combine results from multiple search methods
+        * lexical
+        * semantic
+      - rank results based on relevance scores from both methods
+  - provider
+    - VoyageAI
+      * install via pip: `pip install voyageai`
+      * VOYAGEAI_API_KEY environment variable
+      * generate_embedding(text, model, input_type)
 
-* Rate Limiting
-* Retries
-
-## Building
-Scaling, monitoring, and deploying Claude API applications
-
+## Features
+- extended thinking
+  - reasoning(also known as)
+  - thinking=True
+  - thinking_budget=1000
+  - redacted thinking block
+    - magic string used as part of the prompt to indicate where the thinking block is located
+- vision
+  - image captioning support
+  - object recognition
+  - visual question answering
+- pdf
+  - extract text and images from PDFs
+  - use extracted information for RAG and other tasks
+- citations
+  - provide sources for retrieved information
+  - create clear trail from response back to original sources
+  - enhance credibility and transparency of responses
+  - include in response content or as metadata
+- prompt caching
+  - store and reuse prompts for efficiency
+  - reduce latency for common queries
+  - manage cache with expiration and invalidation strategies
+  - turn on
+    * cache_control: `content: [{type: "ephemeral"}]`
+    * add breakpoint in the prompt to indicate where to cache
+  - todo cache
+    - list of tools
+    - system prompt(content must be at least 1024 tokens long)
+- Files API(tool)
+  - FileMetadata(file_id, type, ...)
+  - ContainerUploadBlock(file_id, content, ...)
+    - `{ "type": "container_upload", "file_id": "123", "content": "file content" }`
+  - run isolated container
+  - upload and manage files for use in prompts and tool calls
+  - support for various file types (e.g., text, CSV, JSON)
+  - integration with RAG for retrieving information from uploaded files
+  - type=code_execution_file
+    * download_file()
+## CC Apps
+- Computer Use
+- Agents
+- Claude Code
+  - features
+    - Discover
+    - Design
+    - Build
+    - Deploy
+    - Support & Scale
+  - Common Workflows
+    - Plan/Implement workflow
+      - feed context
+      - plan solution
+      - implement solution
+    - TDD workflow
+      - feed context
+      - think some test cases
+      - implement tests
+      - write code to pass tests
+  - Connecting to external services
+    - via MCP
+      - add custom functionality by connecting servers that provides
+        - tools
+        - resources
+        - integrations
+## Workflow & Agents
+- when to use
+  - workflow: you can picture exact steps to solve a problem
+  - agent: you are not sure what task or parameters to use
+  - Benefits
+- workflow patterns
+  - Evaluator-Optimizer
+    - input
+    - producer
+    - grader
+    - output
+  - Parallelization
+    - send multiple requests to the model in parallel
+  - Chaining
+    - break complex tasks into smaller subsequent tasks
+    - split work into focused steps
+  - Routing
+    - use initial call to categorize the ask
+    - forward to specialized pipeline(workflow, prompt, set of tools, etc)
+    - when to use
+      - apps with diverse types of request
+      - we can clearly define categories
+      - specialized processing outweighs the cost of routing
+## Environment inspection
+- Benefits
+  - better progress tracking
+  - error handling
+  - quality assurance
+  - adaptaive behavior
+- implementation
+  - reading file contents before modification
+  - taking screenshots after UI interactions
+  - checking API responses for expected data
+  - validating generated content against requirements
 [← Back to Courses Overview](COURSES.md)
