@@ -15,33 +15,33 @@ All course and topic mind maps now live under `mindmaps/` as `*.mm.md` files.
 
 ### Introduction to Agent Skills
 
-![Introduction to Agent Skills](assets/introduction-to-agent-skills.png)
+![Introduction to Agent Skills](docs/introduction-to-agent-skills.png)
 
-[Open interactive mind map](assets/introduction-to-agent-skills.html)
+[Open interactive mind map](docs/introduction-to-agent-skills.html)
 
 ### Building with the Claude API
 
-![Building with the Claude API](assets/building-with-the-claude-api.png)
+![Building with the Claude API](docs/building-with-the-claude-api.png)
 
-[Open interactive mind map](assets/building-with-the-claude-api.html)
+[Open interactive mind map](docs/building-with-the-claude-api.html)
 
 ### Introduction to Model Context Protocol
 
-![Introduction to Model Context Protocol](assets/introduction-to-model-context-protocol.png)
+![Introduction to Model Context Protocol](docs/introduction-to-model-context-protocol.png)
 
-[Open interactive mind map](assets/introduction-to-model-context-protocol.html)
+[Open interactive mind map](docs/introduction-to-model-context-protocol.html)
 
 ### Claude Code in Action
 
-![Claude Code in Action](assets/claude-code-in-action.png)
+![Claude Code in Action](docs/claude-code-in-action.png)
 
-[Open interactive mind map](assets/claude-code-in-action.html)
+[Open interactive mind map](docs/claude-code-in-action.html)
 
 ### Introduction to Sub-agents
 
-![Introduction to Sub-agents](assets/introduction-to-sub-agents.png)
+![Introduction to Sub-agents](docs/introduction-to-sub-agents.png)
 
-[Open interactive mind map](assets/introduction-to-sub-agents.html)
+[Open interactive mind map](docs/introduction-to-sub-agents.html)
 
 ---
 

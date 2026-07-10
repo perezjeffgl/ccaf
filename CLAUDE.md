@@ -15,6 +15,7 @@ Study sandbox for the **Claude Certified Architect – Foundations** (CCAF) cert
 | `mindmaps/introduction-to-model-context-protocol.mm.md` | MCP: architecture, core primitives (tools/resources/prompts), building servers and clients in Python, integration patterns |
 | `mindmaps/claude-code-in-action.mm.md` | Claude Code: setup, core features, workflow integration, debugging, team collaboration |
 | `mindmaps/introduction-to-sub-agents.mm.md` | Sub-agents: context isolation, delegation patterns, and practical usage notes |
+| `docs/` | Generated PNG/SVG/HTML mind-map exports (output of the `/markmap` skill), named `<basename>.{html,png,svg}` |
 
 ## Working in This Repo
 

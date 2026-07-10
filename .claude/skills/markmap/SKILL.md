@@ -1,6 +1,6 @@
 ---
 name: markmap
-description: Generate an interactive HTML mind map and export PNG/SVG images from a .mm.md Markmap file. Runs the markmap CLI, validates output, and writes files into the assets/ directory.
+description: Generate an interactive HTML mind map and export PNG/SVG images from a .mm.md Markmap file. Runs the markmap CLI, validates output, and writes files into the docs/ directory.
 when_to_use: Use when the user asks to generate, render, or export a mind map from a *.mm.md file, or passes a markmap filename as an argument.
 argument-hint: "file.mm.md"
 paths:
@@ -21,7 +21,7 @@ Convert a `.mm.md` Markmap file into an interactive HTML mind map and export it 
 
 Example: `/markmap mindmaps/introduction-to-agent-skills.mm.md`
 
-Derive `<basename>` from the input filename (strip path and `.mm.md`, e.g. `introduction-to-agent-skills`). All output goes to `assets/`.
+Derive `<basename>` from the input filename (strip path and `.mm.md`, e.g. `introduction-to-agent-skills`). All output goes to `docs/`.
 
 ---
 
@@ -31,14 +31,14 @@ Derive `<basename>` from the input filename (strip path and `.mm.md`, e.g. `intr
 
 ```bash
 mkdir -p assets
-npx markmap-cli --no-open --offline --output assets/<basename>.html <file.mm.md> 2>&1
+npx markmap-cli --no-open --offline --output docs/<basename>.html <file.mm.md> 2>&1
 ```
 
 ### Validate HTML
 
 ```bash
-head -1 assets/<basename>.html
-ls -lh assets/<basename>.html
+head -1 docs/<basename>.html
+ls -lh docs/<basename>.html
 ```
 
 - Valid: first line is `<!doctype html>` and file is non-zero (expect ~350 KB with `--offline`).
@@ -82,9 +82,9 @@ await browser.close();
 EOF
 
 node "$SCRIPT" \
-  assets/<basename>.html \
-  assets/<basename>.png \
-  assets/<basename>.svg 2>&1
+  docs/<basename>.html \
+  docs/<basename>.png \
+  docs/<basename>.svg 2>&1
 
 rm -f "$SCRIPT"
 ```
@@ -94,9 +94,9 @@ rm -f "$SCRIPT"
 ### Validate exports
 
 ```bash
-file assets/<basename>.png
-head -c 40 assets/<basename>.svg
-ls -lh assets/<basename>.{png,svg}
+file docs/<basename>.png
+head -c 40 docs/<basename>.svg
+ls -lh docs/<basename>.{png,svg}
 ```
 
 - Valid PNG: `file` reports `PNG image data, 1920 x 1080`.
@@ -138,8 +138,8 @@ markmap:
 ## After generating
 
 Report all three output paths and sizes:
-- `assets/<basename>.html` — interactive mind map (~350 KB offline)
-- `assets/<basename>.png` — raster screenshot at 1920×1080
-- `assets/<basename>.svg` — extracted vector SVG
+- `docs/<basename>.html` — interactive mind map (~350 KB offline)
+- `docs/<basename>.png` — raster screenshot at 1920×1080
+- `docs/<basename>.svg` — extracted vector SVG
 
 If the CLI or puppeteer is missing, suggest `npm install -g markmap-cli` or `npm install -g puppeteer`.
