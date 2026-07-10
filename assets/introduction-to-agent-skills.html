@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>((r) => {
+          setTimeout(r);
+        })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Agent Skills","children":[{"content":"Fundamentals","children":[{"content":"folders of instructions","children":[{"content":".../skills/mySkillName/SKILL.md","children":[],"payload":{"tag":"li","lines":"15,16"}}],"payload":{"tag":"li","lines":"14,16"}},{"content":"use description to match skills to request","children":[],"payload":{"tag":"li","lines":"16,17"}},{"content":"paths","children":[{"content":"<code>~/.claude/skills</code> (personal)","children":[],"payload":{"tag":"li","lines":"18,19"}},{"content":"<code>&lt;project&gt;/.claude/skills</code>","children":[],"payload":{"tag":"li","lines":"19,20"}}],"payload":{"tag":"li","lines":"17,20"}},{"content":"load on demand","children":[],"payload":{"tag":"li","lines":"20,22"}}],"payload":{"tag":"h2","lines":"11,12"}},{"content":"Anathomy","children":[{"content":"*name = identifier","children":[],"payload":{"tag":"li","lines":"28,29"}},{"content":"*description = when to use it","children":[],"payload":{"tag":"li","lines":"29,30"}},{"content":"model","children":[{"content":"sonnet","children":[],"payload":{"tag":"li","lines":"31,32"}},{"content":"opus","children":[],"payload":{"tag":"li","lines":"32,33"}},{"content":"haiku","children":[],"payload":{"tag":"li","lines":"33,34"}}],"payload":{"tag":"li","lines":"30,34"}},{"content":"allowed-tools = restricts what Claude can use","children":[{"content":"Read","children":[],"payload":{"tag":"li","lines":"35,36"}},{"content":"Grep","children":[],"payload":{"tag":"li","lines":"36,37"}},{"content":"Glob","children":[],"payload":{"tag":"li","lines":"37,38"}},{"content":"Bash","children":[],"payload":{"tag":"li","lines":"38,40"}}],"payload":{"tag":"li","lines":"34,40"}}],"payload":{"tag":"h2","lines":"24,25"}},{"content":"Distribute","children":[{"content":"via git(.claude/skills/*)","children":[],"payload":{"tag":"li","lines":"47,48"}},{"content":"plugins(not load skills auto)","children":[],"payload":{"tag":"li","lines":"48,49"}},{"content":"enterprise settings(deploy skill org-wide)","children":[{"content":"managed-settings.json","children":[],"payload":{"tag":"li","lines":"50,51"}}],"payload":{"tag":"li","lines":"49,51"}},{"content":"build-in agents(can not access skills)","children":[{"content":"Explore","children":[],"payload":{"tag":"li","lines":"52,53"}},{"content":"Plan","children":[],"payload":{"tag":"li","lines":"53,54"}},{"content":"Verify","children":[],"payload":{"tag":"li","lines":"54,55"}}],"payload":{"tag":"li","lines":"51,55"}},{"content":"custom subagents(load only skills defined in field)","children":[],"payload":{"tag":"li","lines":"55,57"}}],"payload":{"tag":"h2","lines":"44,45"}},{"content":"Other Features","children":[{"content":"CLAUDE.md","children":[{"content":"load on every conversation","children":[],"payload":{"tag":"li","lines":"59,60"}}],"payload":{"tag":"li","lines":"58,60"}},{"content":"subagents","children":[],"payload":{"tag":"li","lines":"60,61"}},{"content":"hooks","children":[],"payload":{"tag":"li","lines":"61,62"}},{"content":"mcp servers","children":[],"payload":{"tag":"li","lines":"62,64"}}],"payload":{"tag":"h2","lines":"57,58"}},{"content":"Troubleshooting","children":[{"content":"skills validator tool","children":[{"content":"uv","children":[],"payload":{"tag":"li","lines":"66,67"}}],"payload":{"tag":"li","lines":"65,67"}},{"content":"check description","children":[{"content":"specifics","children":[],"payload":{"tag":"li","lines":"68,69"}},{"content":"make them distinct","children":[],"payload":{"tag":"li","lines":"69,70"}}],"payload":{"tag":"li","lines":"67,70"}},{"content":"SKILL.md path/location, case","children":[{"content":"<code>claude --debug</code>","children":[],"payload":{"tag":"li","lines":"71,72"}}],"payload":{"tag":"li","lines":"70,72"}},{"content":"runtime errors ~ file permissions","children":[{"content":"<code>chmod +x</code>","children":[],"payload":{"tag":"li","lines":"73,74"}}],"payload":{"tag":"li","lines":"72,74"}},{"content":"priority","children":[{"content":"enterprise","children":[],"payload":{"tag":"li","lines":"75,76"}},{"content":"personal","children":[],"payload":{"tag":"li","lines":"76,77"}},{"content":"project","children":[],"payload":{"tag":"li","lines":"77,78"}},{"content":"plugins","children":[],"payload":{"tag":"li","lines":"78,80"}}],"payload":{"tag":"li","lines":"74,80"}}],"payload":{"tag":"h2","lines":"64,65"}}],"payload":{"tag":"h1","lines":"6,7"}},{"maxWidth":20})</script>
+</body>
+</html>

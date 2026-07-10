@@ -8,17 +8,18 @@ Study sandbox for the **Claude Certified Architect – Foundations** (CCAF) cert
 
 ## Repository Structure
 
-| File | Contents |
+| Path | Contents |
 |------|----------|
-| `introduction-to-agent-skills.md` | Agent Skills: reusable markdown instructions, creating/configuring/distributing skills in Claude Code |
-| `building-with-the-claude-api.md` | Claude API: authentication, prompt engineering, vision, tool use, batch processing, streaming, error handling, production scaling |
-| `introduction-to-model-context-protocol.md` | MCP: architecture, core primitives (tools/resources/prompts), building servers and clients in Python, integration patterns |
-| `claude-code-in-action.md` | Claude Code: setup, core features, workflow integration, debugging, team collaboration |
+| `mindmaps/introduction-to-agent-skills.mm.md` | Agent Skills: reusable markdown instructions, creating/configuring/distributing skills in Claude Code |
+| `mindmaps/building-with-the-claude-api.mm.md` | Claude API: authentication, prompt engineering, vision, tool use, batch processing, streaming, error handling, production scaling |
+| `mindmaps/introduction-to-model-context-protocol.mm.md` | MCP: architecture, core primitives (tools/resources/prompts), building servers and clients in Python, integration patterns |
+| `mindmaps/claude-code-in-action.mm.md` | Claude Code: setup, core features, workflow integration, debugging, team collaboration |
+| `mindmaps/introduction-to-sub-agents.mm.md` | Sub-agents: context isolation, delegation patterns, and practical usage notes |
 
 ## Working in This Repo
 
-All content lives in Markdown files. When adding or updating notes:
+All course notes live as Markmap-flavored Markdown files in `mindmaps/`. When adding or updating notes:
 
-- Keep each course's notes in its own file; cross-reference with links rather than duplicating content.
-- `COURSES.md` is the navigation hub — update it if new course files are added.
+- Keep each course/topic's notes in its own `.mm.md` file; cross-reference with links rather than duplicating content.
+- Update `README.md` course links when files are added, removed, or moved.
 - Code snippets in the notes are illustrative examples from the courses, not production code.

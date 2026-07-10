@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+.markmap-dark {
+  background: #27272a;
+  color: white;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/style.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.18.12/dist/browser/index.js"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.18.12/dist/index.js"></script><script>((r) => {
+          setTimeout(r);
+        })(() => {
+  const { markmap, mm } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute("style", "position:absolute;bottom:20px;right:20px");
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, root2, jsonOptions) => {
+              const markmap = getMarkmap();
+              window.mm = markmap.Markmap.create(
+                "svg#mindmap",
+                (getOptions || markmap.deriveOptions)(jsonOptions),
+                root2
+              );
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.classList.add("markmap-dark");
+              }
+            })(() => window.markmap,null,{"content":"Subagent","children":[{"content":"run on its context","children":[{"content":"main context only receives the final output","children":[],"payload":{"tag":"li","lines":"3,4"}},{"content":"entire subagent context/conversation is discarded after subagent stops","children":[],"payload":{"tag":"li","lines":"4,5"}}],"payload":{"tag":"h2","lines":"1,2"}},{"content":"inputs","children":[{"content":"custom system prompt","children":[],"payload":{"tag":"li","lines":"6,7"}},{"content":"task description","children":[],"payload":{"tag":"li","lines":"7,8"}}],"payload":{"tag":"h2","lines":"5,6"}},{"content":"advantages &amp; benefits","children":[{"content":"manage its own context window, keeping the main context clean and focused","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"helps to break work into smaller, focused pieces","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"bring back just information that is relevant to the main context","children":[],"payload":{"tag":"li","lines":"11,12"}}],"payload":{"tag":"h2","lines":"8,9"}},{"content":"built-in subagents","children":[{"content":"Explore","children":[],"payload":{"tag":"li","lines":"13,14"}},{"content":"Plan","children":[],"payload":{"tag":"li","lines":"14,15"}},{"content":"...","children":[],"payload":{"tag":"li","lines":"15,16"}}],"payload":{"tag":"h2","lines":"12,13"}},{"content":"Custom subagents","children":[{"content":"can be created by users, *.md files","children":[{"content":"/agents","children":[],"payload":{"tag":"li","lines":"18,19"}},{"content":"<code>~/.claude/subagents</code> (personal)","children":[],"payload":{"tag":"li","lines":"19,20"}},{"content":"<code>&lt;project&gt;/.claude/subagents</code>","children":[],"payload":{"tag":"li","lines":"20,21"}}],"payload":{"tag":"li","lines":"17,21"}},{"content":"name: unique identifier","children":[],"payload":{"tag":"li","lines":"21,22"}},{"content":"description: &quot;Use.. when..&quot;","children":[],"payload":{"tag":"li","lines":"22,23"}},{"content":"tools","children":[],"payload":{"tag":"li","lines":"23,24"}},{"content":"model [sonnet, opus, haiku, inherit]","children":[],"payload":{"tag":"li","lines":"24,25"}},{"content":"color","children":[],"payload":{"tag":"li","lines":"25,26"}},{"content":"system prompt","children":[{"content":"instructions for the subagent","children":[],"payload":{"tag":"li","lines":"27,28"}},{"content":"what to focus on","children":[],"payload":{"tag":"li","lines":"28,29"}},{"content":"how to handle the task","children":[],"payload":{"tag":"li","lines":"29,30"}},{"content":"how report findings back","children":[],"payload":{"tag":"li","lines":"30,31"}}],"payload":{"tag":"li","lines":"26,31"}}],"payload":{"tag":"h2","lines":"16,17"}},{"content":"Control/Influence modified prompt","children":[{"content":"used for","children":[{"content":"Research, Reviews","children":[],"payload":{"tag":"li","lines":"33,34"}},{"content":"custom system prompts","children":[],"payload":{"tag":"li","lines":"34,35"}}],"payload":{"tag":"li","lines":"32,35"}},{"content":"avoid them for","children":[{"content":"expert claims","children":[],"payload":{"tag":"li","lines":"36,37"}},{"content":"multi step pipelines","children":[],"payload":{"tag":"li","lines":"37,38"}},{"content":"test runners","children":[],"payload":{"tag":"li","lines":"38,39"}}],"payload":{"tag":"li","lines":"35,39"}},{"content":"use effectively","children":[{"content":"specific description","children":[],"payload":{"tag":"li","lines":"40,41"}},{"content":"structured output format","children":[],"payload":{"tag":"li","lines":"41,42"}},{"content":"report obstacles or issues","children":[],"payload":{"tag":"li","lines":"42,43"}},{"content":"limit tool access","children":[],"payload":{"tag":"li","lines":"43,44"}}],"payload":{"tag":"li","lines":"39,44"}},{"content":"ask before creating a subagent","children":[{"content":"does the intermediate work matter?","children":[],"payload":{"tag":"li","lines":"45,46"}},{"content":"if not, delegate it = subagent","children":[],"payload":{"tag":"li","lines":"46,48"}}],"payload":{"tag":"li","lines":"44,48"}}],"payload":{"tag":"h2","lines":"31,32"}}],"payload":{"tag":"h1","lines":"0,1"}},null)</script>
+</body>
+</html>

@@ -46,7 +46,6 @@ Help Claude gather relevant context from the codebase and user input
         - compresses memory to save space
         - removes unnecessary details
     - clear
-        - 
 - /init > CLAUDE.md
     - initialize the coding assistant
     - set up the environment
